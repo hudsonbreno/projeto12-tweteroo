@@ -10,7 +10,6 @@ var usuario =[
     }
 ]
 
-console.log("oi")
 
 var lista = [
     {
