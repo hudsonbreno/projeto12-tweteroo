@@ -10,6 +10,8 @@ var usuario =[
     }
 ]
 
+console.log("oi")
+
 var lista = [
     {
         username: "bobesponja",
