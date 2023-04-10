@@ -6,22 +6,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 var usuario =[]
-
-
 var lista = []
+var avatar=""
 
 app.get("/tweets", (req, res)=>{
     res.send(lista)
 })
 
 app.post("/tweets", (req, res)=>{
-    console.log(req.body.username)
+    let nome = req.body.username
     if(!req.body.username)
     {        
-        res.send("UNAUTHORIZED")
+        res.status(401).send("UNAUTHORIZED")
     } else{
-        lista.push({username : req.body.username, tweet: req.body.tweet})
-        res.send(lista)
+        const consulta = usuario.find((d)=>d.username==nome? avatar = d.avatar:false)
+        if(consulta){
+            lista.push({username : req.body.username, avatar: avatar, tweet: req.body.tweet})
+            res.send(lista)
+        } else{
+            res.send("Usuario não encontrado")
+        }
     }
 
 })
