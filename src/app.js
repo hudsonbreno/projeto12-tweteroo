@@ -5,12 +5,23 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-var usuario =[]
-var lista = []
-var avatar=""
+let usuario =[]
+let lista = []
+let avatar=""
+
 
 app.get("/tweets", (req, res)=>{
-    res.send(lista)
+        if (lista.length>10){
+            let novaLista=[]
+            for (let j= 0; j<=10; j++){
+                novaLista.push(lista[lista.length-1-j])
+            }
+            res.send(novaLista)
+        } else{
+            res.send(lista)
+        }
+
+
 })
 
 app.post("/tweets", (req, res)=>{
