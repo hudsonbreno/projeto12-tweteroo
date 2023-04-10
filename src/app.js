@@ -13,7 +13,7 @@ let avatar=""
 app.get("/tweets", (req, res)=>{
         if (lista.length>10){
             let novaLista=[]
-            for (let j= 0; j<=10; j++){
+            for (let j= 0; j<10; j++){
                 novaLista.push(lista[lista.length-1-j])
             }
             res.send(novaLista)
@@ -32,10 +32,10 @@ app.post("/tweets", (req, res)=>{
     } else{
         const consulta = usuario.find((d)=>d.username==nome? avatar = d.avatar:false)
         if(consulta){
-            lista.push({username : req.body.username, avatar: avatar, tweet: req.body.tweet})
+            lista.push({id: lista.length+1, username : req.body.username, avatar: avatar, tweet: req.body.tweet})
             res.send(lista)
         } else{
-            res.send("Usuario não encontrado")
+            res.status(401).send("UNAUTHORIZED")
         }
     }
 
